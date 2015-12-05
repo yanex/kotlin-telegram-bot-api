@@ -1,0 +1,12 @@
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "com.google.code.gson:gson:2.5"
+    testCompile "junit:junit:4.12"
+}
