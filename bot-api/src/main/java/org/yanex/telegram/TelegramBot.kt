@@ -28,4 +28,8 @@ class TelegramBot internal constructor(serviceProvider: TelegramBotService) : Te
         }
         return currentMaxId
     }
+
+    fun listen(handler: UpdateHandler, maxId: Long = 0) = listen(maxId, { handler.handleError(it) }) {
+        handleMessage(handler, it)
+    }
 }
