@@ -175,7 +175,7 @@ interface TelegramBotService {
 
     @GET("/getUpdates")
     fun getUpdates(
-            @Query("offset") offset: Int? = null,
+            @Query("offset") offset: Long? = null,
             @Query("limit") limit: Int? = null,
             @Query("timeout") timeout: Int? = null
     ): Response<List<Update>>
