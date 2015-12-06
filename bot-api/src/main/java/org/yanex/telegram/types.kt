@@ -125,6 +125,10 @@ data class ForceReply(
         @Name("force_reply") val forceReply: Boolean,
         override val selective: Boolean): Reply
 
+data class Update(
+        @Name("update_id") val updateId: Long,
+        val message: Message)
+
 enum class ChatAction(val apiName: String) {
     TYPING("typing"),
     UPLOAD_PHOTO("upload_photo"),

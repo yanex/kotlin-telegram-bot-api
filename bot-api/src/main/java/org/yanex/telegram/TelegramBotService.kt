@@ -2,6 +2,7 @@ package org.yanex.telegram
 
 import retrofit.RestAdapter
 import retrofit.http.*
+import retrofit.mime.TypedByteArray
 import retrofit.mime.TypedFile
 import java.io.File
 import java.nio.file.Files
@@ -17,6 +18,8 @@ class InputFile(
         file: File,
         mimeType: String? = null
 ) : TypedFile(mimeType ?: Files.probeContentType(file.toPath()), file)
+
+class InputBytes(bytes: ByteArray, mimeType: String = "application/unknown") : TypedByteArray(mimeType, bytes)
 
 interface TelegramBotService {
     @GET("/getMe")
@@ -170,4 +173,23 @@ interface TelegramBotService {
             @Path("offset") offset: Int? = null,
             @Path("limit") limit: Int? = null
     ): Response<UserProfilePhotos>
+
+    @GET("/getUpdates")
+    fun getUpdates(
+            @Path("offset") offset: Int? = null,
+            @Path("limit") limit: Int? = null,
+            @Path("timeout") timeout: Int? = null)
+
+    @POST("/setWebhook") @Multipart
+    fun setWebhook(
+            @Part("url") url: String,
+            @Part("certificate") certificate: InputFile)
+
+    @POST("/setWebhook") @Multipart
+    fun setWebhook(
+            @Part("url") url: String,
+            @Part("certificate") certificate: InputBytes? = null)
+
+    @POST("/setWebhook")
+    fun removeWebhook()
 }
