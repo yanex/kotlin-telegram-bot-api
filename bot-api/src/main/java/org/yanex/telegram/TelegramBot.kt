@@ -16,15 +16,16 @@ class TelegramBot internal constructor(serviceProvider: TelegramBotService) : Te
         }
     }
 
-    fun listen(errorHandler: (Response<*>) -> Boolean = { true }, handler: (Message) -> Unit) {
-        var maxId: Long? = null
+    fun listen(maxId: Long = 0, errorHandler: (Response<*>) -> Boolean = { true }, handler: (Message) -> Unit): Long {
+        var currentMaxId: Long = maxId
         while (true) {
-            val response = getUpdates(offset = maxId)
-            val updates = response.result ?: if (errorHandler(response)) continue else return
+            val response = getUpdates(offset = currentMaxId)
+            val updates = response.result ?: if (errorHandler(response)) continue else break
             for (update in updates) {
                 handler(update.message)
-                maxId = update.updateId + 1
+                currentMaxId = update.updateId + 1
             }
         }
+        return currentMaxId
     }
 }
