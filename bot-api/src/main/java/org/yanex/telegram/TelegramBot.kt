@@ -15,4 +15,16 @@ class TelegramBot internal constructor(serviceProvider: TelegramBotService) : Te
             return adapter.create(TelegramBotService::class.java)
         }
     }
+
+    fun listen(errorHandler: (Response<*>) -> Boolean = { true }, handler: (Message) -> Unit) {
+        var maxId: Long? = null
+        while (true) {
+            val response = getUpdates(offset = maxId)
+            val updates = response.result ?: if (errorHandler(response)) continue else return
+            for (update in updates) {
+                handler(update.message)
+                maxId = update.updateId + 1
+            }
+        }
+    }
 }
