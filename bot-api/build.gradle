@@ -7,6 +7,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile 'com.squareup.retrofit:retrofit:1.6.0'
     compile "com.google.code.gson:gson:2.5"
     testCompile "junit:junit:4.12"
 }

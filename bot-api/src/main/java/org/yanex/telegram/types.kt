@@ -107,16 +107,31 @@ data class File(
         @Name("file_size") val fileSize: Int?,
         @Name("file_path") val filePath: String?)
 
+interface Reply {
+    val selective: Boolean
+}
+
 data class ReplyKeyboardMarkup(
         val keyboard: List<List<String>>,
         @Name("resize_keyboard") val resizeKeyboard: Boolean,
         @Name("one_time_keyboard") val oneTimeKeyboard: Boolean,
-        val selective: Boolean)
+        override val selective: Boolean) : Reply
 
 data class ReplyKeyboardHide(
         @Name("hide_keyboard") val hideKeyboard: Boolean,
-        val selective: Boolean)
+        override val selective: Boolean) : Reply
 
 data class ForceReply(
         @Name("force_reply") val forceReply: Boolean,
-        val selective: Boolean)
+        override val selective: Boolean): Reply
+
+enum class ChatAction(val apiName: String) {
+    TYPING("typing"),
+    UPLOAD_PHOTO("upload_photo"),
+    RECORD_VIDEO("record_video"),
+    UPLOAD_VIDEO("upload_video"),
+    RECORD_AUDIO("record_audio"),
+    UPLOAD_AUDIO("upload_audio"),
+    UPLOAD_DOCUMENT("upload_document"),
+    FIND_LOCATION("find_location")
+}
