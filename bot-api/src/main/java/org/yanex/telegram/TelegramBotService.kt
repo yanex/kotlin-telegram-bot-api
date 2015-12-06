@@ -1,6 +1,5 @@
 package org.yanex.telegram
 
-import retrofit.RestAdapter
 import retrofit.http.*
 import retrofit.mime.TypedByteArray
 import retrofit.mime.TypedFile
@@ -169,16 +168,17 @@ interface TelegramBotService {
 
     @GET("/getUserProfilePhotos")
     fun getUserProfilePhotos(
-            @Path("user_id") userId: Long,
-            @Path("offset") offset: Int? = null,
-            @Path("limit") limit: Int? = null
+            @Query("user_id") userId: Long,
+            @Query("offset") offset: Int? = null,
+            @Query("limit") limit: Int? = null
     ): Response<UserProfilePhotos>
 
     @GET("/getUpdates")
     fun getUpdates(
-            @Path("offset") offset: Int? = null,
-            @Path("limit") limit: Int? = null,
-            @Path("timeout") timeout: Int? = null)
+            @Query("offset") offset: Int? = null,
+            @Query("limit") limit: Int? = null,
+            @Query("timeout") timeout: Int? = null
+    ): Response<List<Update>>
 
     @POST("/setWebhook") @Multipart
     fun setWebhook(
