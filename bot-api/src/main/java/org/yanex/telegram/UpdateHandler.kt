@@ -12,6 +12,35 @@ interface UpdateHandler {
     fun handleVideoMessage(message: Message, video: Video, caption: String?) {}
     fun handleContactMessage(message: Message, contact: Contact) {}
     fun handleLocationMessage(message: Message, location: Location) {}
+
+    fun handleMessage(message: Message) {
+        if (message.text != null) {
+            val matcher = COMMAND_REGEXP.matcher(message.text)
+            if (matcher.matches()) {
+                val command = matcher.group(1)
+                val args = matcher.group(3)
+                handleCommand(message, command, args)
+            } else {
+                handleTextMessage(message, message.text)
+            }
+        } else if (message.audio != null) {
+            handleAudioMessage(message, message.audio)
+        } else if (message.photo != null) {
+            handlePhotoMessage(message, message.photo, message.caption)
+        } else if (message.document != null) {
+            handleDocumentMessage(message, message.document)
+        } else if (message.sticker != null) {
+            handleStickerMessage(message, message.sticker)
+        } else if (message.video != null) {
+            handleVideoMessage(message, message.video, message.caption)
+        } else if (message.contact != null) {
+            handleContactMessage(message, message.contact)
+        } else if (message.location != null) {
+            handleLocationMessage(message, message.location)
+        } else {
+            handleUnknown(message)
+        }
+    }
 }
 
 interface StrictUpdateHandler : UpdateHandler {
@@ -28,32 +57,3 @@ interface StrictUpdateHandler : UpdateHandler {
 }
 
 internal val COMMAND_REGEXP = "^\\/([A-Za-z0-9_]{1,32})( (.*))?$".toPattern()
-
-internal fun handleMessage(handler: UpdateHandler, message: Message) {
-    if (message.text != null) {
-        val matcher = COMMAND_REGEXP.matcher(message.text)
-        if (matcher.matches()) {
-            val command = matcher.group(1)
-            val args = matcher.group(3)
-            handler.handleCommand(message, command, args)
-        } else {
-            handler.handleTextMessage(message, message.text)
-        }
-    } else if (message.audio != null) {
-        handler.handleAudioMessage(message, message.audio)
-    } else if (message.photo != null) {
-        handler.handlePhotoMessage(message, message.photo, message.caption)
-    } else if (message.document != null) {
-        handler.handleDocumentMessage(message, message.document)
-    } else if (message.sticker != null) {
-        handler.handleStickerMessage(message, message.sticker)
-    } else if (message.video != null) {
-        handler.handleVideoMessage(message, message.video, message.caption)
-    } else if (message.contact != null) {
-        handler.handleContactMessage(message, message.contact)
-    } else if (message.location != null) {
-        handler.handleLocationMessage(message, message.location)
-    } else {
-        handler.handleUnknown(message)
-    }
-}
