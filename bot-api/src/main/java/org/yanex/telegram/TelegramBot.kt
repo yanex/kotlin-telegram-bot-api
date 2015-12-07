@@ -30,6 +30,6 @@ class TelegramBot internal constructor(serviceProvider: TelegramBotService) : Te
     }
 
     fun listen(handler: UpdateHandler, maxId: Long = 0) = listen(maxId, { handler.handleError(it) }) {
-        handleMessage(handler, it)
+        handler.handleMessage(it)
     }
 }
