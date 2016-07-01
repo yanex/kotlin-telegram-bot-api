@@ -1,12 +1,12 @@
 package org.yanex.telegram
 
+import org.yanex.telegram.entities.Message
 import retrofit.RestAdapter
 import retrofit.RestAdapter.LogLevel
 
 class TelegramBot internal constructor(serviceProvider: TelegramBotService) : TelegramBotService by serviceProvider {
-    constructor(token: String, logLevel: LogLevel = LogLevel.NONE) : this(create(token, logLevel))
-
-    private companion object {
+    companion object {
+        @JvmStatic
         fun create(token: String, logLevel: LogLevel): TelegramBotService {
             val adapter = RestAdapter.Builder()
                     .setEndpoint("https://api.telegram.org/bot$token")
@@ -16,20 +16,20 @@ class TelegramBot internal constructor(serviceProvider: TelegramBotService) : Te
         }
     }
 
-    fun listen(maxId: Long = 0, errorHandler: (Response<*>) -> Boolean = { true }, handler: (Message) -> Unit): Long {
+    fun listen(errorHandler: (Response<*>) -> Boolean, maxId: Long, handler: (Message) -> Unit): Long {
         var currentMaxId: Long = maxId
         while (true) {
             val response = getUpdates(offset = currentMaxId)
             val updates = response.result ?: if (errorHandler(response)) continue else break
             for (update in updates) {
-                handler(update.message)
+                update.message?.let { handler(it) }
                 currentMaxId = update.updateId + 1
             }
         }
         return currentMaxId
     }
 
-    fun listen(handler: UpdateHandler, maxId: Long = 0) = listen(maxId, { handler.handleError(it) }) {
+    fun listen(handler: UpdateHandler, maxId: Long = 0) = listen({ handler.handleError(it) }, maxId) {
         handler.handleMessage(it)
     }
 }

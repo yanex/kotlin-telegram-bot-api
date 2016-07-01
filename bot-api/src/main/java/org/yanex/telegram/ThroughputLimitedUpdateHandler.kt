@@ -1,5 +1,7 @@
 package org.yanex.telegram
 
+import org.yanex.telegram.entities.Message
+
 abstract class ThroughputLimitedUpdateHandler(
         private val delegate: UpdateHandler,
         private val minimalDelayMs: Long

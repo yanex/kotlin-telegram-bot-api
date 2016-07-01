@@ -1,5 +1,7 @@
 package org.yanex.telegram
 
+import org.yanex.telegram.entities.*
+
 interface UpdateHandler {
     fun handleError(response: Response<*>): Boolean = true
     fun handleUnknown(message: Message) {}

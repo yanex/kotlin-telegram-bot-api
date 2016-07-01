@@ -1,5 +1,6 @@
 package org.yanex.telegram
 
+import org.yanex.telegram.entities.Message
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
