@@ -17,6 +17,6 @@ sourceCompatibility = 1.6
 
 allprojects {
     repositories {
-        jcenter()
+        mavenCentral()
     }
 }
