@@ -9,7 +9,7 @@ class VisitorUpdateHandler(val visitor: UpdateVisitor) : UpdateHandler {
     override fun handleUpdate(update: Update) = visitor.processUpdate(update)
     
     private fun UpdateVisitor.processUpdate(update: Update) {
-        if (update.message != null) {
+        val result = if (update.message != null) {
             handleNewMessage(update, update.message)
         } else if (update.editedMessage != null) {
             visitEdited(update, update.editedMessage)
@@ -20,12 +20,16 @@ class VisitorUpdateHandler(val visitor: UpdateVisitor) : UpdateHandler {
         } else if (update.callbackQuery != null) {
             visitCallbackQuery(update, update.callbackQuery)
         } else {
+            false
+        }
+
+        if (!result) {
             visitUpdate(update)
         }
     }
 
-    private fun UpdateVisitor.handleNewMessage(update: Update, message: Message) {
-        if (message.text != null) {
+    private fun UpdateVisitor.handleNewMessage(update: Update, message: Message): Boolean {
+        return if (message.text != null) {
             val matcher = COMMAND_REGEXP.matcher(message.text)
             if (matcher.matches()) {
                 val command = matcher.group(1)
@@ -51,7 +55,7 @@ class VisitorUpdateHandler(val visitor: UpdateVisitor) : UpdateHandler {
         } else if (message.location != null) {
             visitLocation(update, message, message.location)
         } else {
-            visitUpdate(update)
+            false
         }
     }
 
