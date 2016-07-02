@@ -1,6 +1,6 @@
 package org.yanex.telegram
 
-import org.yanex.telegram.entities.Message
+import org.yanex.telegram.handler.UpdateHandler
 import retrofit.RestAdapter
 import retrofit.RestAdapter.LogLevel
 
@@ -16,20 +16,16 @@ class TelegramBot internal constructor(serviceProvider: TelegramBotService) : Te
         }
     }
 
-    fun listen(errorHandler: (Response<*>) -> Boolean, maxId: Long, handler: (Message) -> Unit): Long {
+    fun listen(maxId: Long, handler: UpdateHandler): Long {
         var currentMaxId: Long = maxId
         while (true) {
             val response = getUpdates(offset = currentMaxId)
-            val updates = response.result ?: if (errorHandler(response)) continue else break
+            val updates = response.result ?: if (handler.onError(response)) continue else break
             for (update in updates) {
-                update.message?.let { handler(it) }
+                handler.handleUpdate(update)
                 currentMaxId = update.updateId + 1
             }
         }
         return currentMaxId
-    }
-
-    fun listen(handler: UpdateHandler, maxId: Long = 0) = listen({ handler.handleError(it) }, maxId) {
-        handler.handleMessage(it)
     }
 }
