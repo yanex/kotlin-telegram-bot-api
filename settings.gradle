@@ -1,1 +1,4 @@
-include 'bot-api'
+include ':bot-api', ':helloworld-java', ':helloworld-kotlin'
+
+project(':helloworld-java').projectDir = new File(rootDir, 'examples/helloworld-java')
+project(':helloworld-kotlin').projectDir = new File(rootDir, 'examples/helloworld-kotlin')
