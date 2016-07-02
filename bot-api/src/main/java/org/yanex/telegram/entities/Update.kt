@@ -20,4 +20,20 @@ data class Update(
         @Name("edited_message") val editedMessage: Message?,
         @Name("inline_query") val inlineQuery: InlineQuery?,
         @Name("chosen_inline_result") val chosenInlineResult: ChosenInlineResult?,
-        @Name("callback_query") val callbackQuery: CallbackQuery?)
+        @Name("callback_query") val callbackQuery: CallbackQuery?) {
+    val senderId: Long
+        get() {
+            return if (message != null) 
+                message.chat.id
+            else if (editedMessage != null)
+                editedMessage.chat.id
+            else if (inlineQuery != null)
+                inlineQuery.from.id
+            else if (chosenInlineResult != null)
+                chosenInlineResult.from.id
+            else if (callbackQuery != null)
+                callbackQuery.from.id
+            else
+                throw IllegalStateException("Everything is null.")
+        }
+}
