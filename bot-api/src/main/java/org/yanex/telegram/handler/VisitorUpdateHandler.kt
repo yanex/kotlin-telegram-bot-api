@@ -30,14 +30,7 @@ class VisitorUpdateHandler(val visitor: UpdateVisitor) : UpdateHandler {
 
     private fun UpdateVisitor.handleNewMessage(update: Update, message: Message): Boolean {
         return if (message.text != null) {
-            val matcher = COMMAND_REGEXP.matcher(message.text)
-            if (matcher.matches()) {
-                val command = matcher.group(1)
-                val args = matcher.group(3)
-                visitCommand(update, message, command, args)
-            } else {
-                visitText(update, message, message.text)
-            }
+            visitText(update, message, message.text)
         } else if (message.audio != null) {
             visitAudio(update, message, message.audio)
         } else if (message.photo != null) {
@@ -57,9 +50,5 @@ class VisitorUpdateHandler(val visitor: UpdateVisitor) : UpdateHandler {
         } else {
             false
         }
-    }
-
-    private companion object {
-        private val COMMAND_REGEXP = "^\\/([A-Za-z0-9_]{1,32})( (.*))?$".toPattern()
     }
 }

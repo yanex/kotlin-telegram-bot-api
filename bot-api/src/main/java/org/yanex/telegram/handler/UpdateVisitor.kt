@@ -4,7 +4,6 @@ import org.yanex.telegram.Response
 import org.yanex.telegram.entities.*
 
 interface UpdateVisitor {
-    fun visitCommand(update: Update, message: Message, command: String, args: String): Boolean
     fun visitText(update: Update, message: Message, text: String): Boolean
     fun visitAudio(update: Update, message: Message, audio: Audio): Boolean
     fun visitPhoto(update: Update, message: Message, photo: List<PhotoSize>, caption: String?): Boolean
@@ -36,7 +35,6 @@ interface UpdateVisitor {
 }
 
 abstract class AbstractUpdateVisitor : UpdateVisitor {
-    override fun visitCommand(update: Update, message: Message, command: String, args: String) = false
     override fun visitText(update: Update, message: Message, text: String) = false
     override fun visitAudio(update: Update, message: Message, audio: Audio) = false
     override fun visitPhoto(update: Update, message: Message, photo: List<PhotoSize>, caption: String?) = false
