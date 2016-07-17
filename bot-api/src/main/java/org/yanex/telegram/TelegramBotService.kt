@@ -33,7 +33,7 @@ interface TelegramBotService {
             @Field("disable_web_page_preview") disableWebPagePreview: Boolean? = null,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendMessage") @FormUrlEncoded
@@ -44,7 +44,7 @@ interface TelegramBotService {
             @Field("disable_web_page_preview") disableWebPagePreview: Boolean? = null,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/forwardMessage") @FormUrlEncoded
@@ -70,7 +70,7 @@ interface TelegramBotService {
             @Field("caption") caption: String? = null,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendPhoto") @FormUrlEncoded
@@ -80,7 +80,7 @@ interface TelegramBotService {
             @Field("caption") caption: String? = null,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendPhoto") @Multipart
@@ -90,7 +90,7 @@ interface TelegramBotService {
             @Part("caption") caption: String? = null,
             @Part("disable_notification") disableNotification: Boolean? = null,
             @Part("reply_to_message_id") replyToMessageId: Int? = null,
-            @Part("reply_markup") replyMarkup: Reply? = null
+            @Part("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendPhoto") @Multipart
@@ -100,7 +100,7 @@ interface TelegramBotService {
             @Part("caption") caption: String? = null,
             @Part("disable_notification") disableNotification: Boolean? = null,
             @Part("reply_to_message_id") replyToMessageId: Int? = null,
-            @Part("reply_markup") replyMarkup: Reply? = null
+            @Part("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendAudio") @FormUrlEncoded
@@ -112,7 +112,7 @@ interface TelegramBotService {
             @Field("title") title: String? = null,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendAudio") @FormUrlEncoded
@@ -124,7 +124,7 @@ interface TelegramBotService {
             @Field("title") title: String? = null,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendAudio") @Multipart
@@ -136,7 +136,7 @@ interface TelegramBotService {
             @Part("title") title: String? = null,
             @Part("disable_notification") disableNotification: Boolean? = null,
             @Part("reply_to_message_id") replyToMessageId: Int? = null,
-            @Part("reply_markup") replyMarkup: Reply? = null
+            @Part("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendAudio") @Multipart
@@ -148,7 +148,7 @@ interface TelegramBotService {
             @Part("title") title: String? = null,
             @Part("disable_notification") disableNotification: Boolean? = null,
             @Part("reply_to_message_id") replyToMessageId: Int? = null,
-            @Part("reply_markup") replyMarkup: Reply? = null
+            @Part("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendDocument") @FormUrlEncoded
@@ -158,7 +158,7 @@ interface TelegramBotService {
             @Field("caption") caption: String? = null,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendDocument") @FormUrlEncoded
@@ -168,7 +168,7 @@ interface TelegramBotService {
             @Field("caption") caption: String? = null,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendDocument") @Multipart
@@ -178,7 +178,7 @@ interface TelegramBotService {
             @Part("caption") caption: String? = null,
             @Part("disable_notification") disableNotification: Boolean? = null,
             @Part("reply_to_message_id") replyToMessageId: Int? = null,
-            @Part("reply_markup") replyMarkup: Reply? = null
+            @Part("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendDocument") @Multipart
@@ -188,7 +188,7 @@ interface TelegramBotService {
             @Part("caption") caption: String? = null,
             @Part("disable_notification") disableNotification: Boolean? = null,
             @Part("reply_to_message_id") replyToMessageId: Int? = null,
-            @Part("reply_markup") replyMarkup: Reply? = null
+            @Part("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendSticker") @FormUrlEncoded
@@ -197,7 +197,7 @@ interface TelegramBotService {
             @Field("sticker") fileId: String,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendSticker") @FormUrlEncoded
@@ -206,7 +206,7 @@ interface TelegramBotService {
             @Field("sticker") fileId: String,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendSticker") @Multipart
@@ -215,7 +215,7 @@ interface TelegramBotService {
             @Part("sticker") sticker: InputFile,
             @Part("disable_notification") disableNotification: Boolean? = null,
             @Part("reply_to_message_id") replyToMessageId: Int? = null,
-            @Part("reply_markup") replyMarkup: Reply? = null
+            @Part("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendSticker") @Multipart
@@ -224,7 +224,7 @@ interface TelegramBotService {
             @Part("sticker") sticker: InputFile,
             @Part("disable_notification") disableNotification: Boolean? = null,
             @Part("reply_to_message_id") replyToMessageId: Int? = null,
-            @Part("reply_markup") replyMarkup: Reply? = null
+            @Part("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendVideo") @FormUrlEncoded
@@ -237,7 +237,7 @@ interface TelegramBotService {
             @Field("caption") caption: String? = null,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendVideo") @FormUrlEncoded
@@ -250,7 +250,7 @@ interface TelegramBotService {
             @Field("caption") caption: String? = null,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendVideo") @Multipart
@@ -263,7 +263,7 @@ interface TelegramBotService {
             @Part("caption") caption: String? = null,
             @Part("disable_notification") disableNotification: Boolean? = null,
             @Part("reply_to_message_id") replyToMessageId: Int? = null,
-            @Part("reply_markup") replyMarkup: Reply? = null
+            @Part("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendVideo") @Multipart
@@ -276,7 +276,7 @@ interface TelegramBotService {
             @Part("caption") caption: String? = null,
             @Part("disable_notification") disableNotification: Boolean? = null,
             @Part("reply_to_message_id") replyToMessageId: Int? = null,
-            @Part("reply_markup") replyMarkup: Reply? = null
+            @Part("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendVoice") @FormUrlEncoded
@@ -286,7 +286,7 @@ interface TelegramBotService {
             @Field("duration") duration: Int? = null,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendVoice") @FormUrlEncoded
@@ -296,7 +296,7 @@ interface TelegramBotService {
             @Field("duration") duration: Int? = null,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendVoice") @Multipart
@@ -306,7 +306,7 @@ interface TelegramBotService {
             @Part("duration") duration: Int? = null,
             @Part("disable_notification") disableNotification: Boolean? = null,
             @Part("reply_to_message_id") replyToMessageId: Int? = null,
-            @Part("reply_markup") replyMarkup: Reply? = null
+            @Part("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendVoice") @Multipart
@@ -316,7 +316,7 @@ interface TelegramBotService {
             @Part("duration") duration: Int? = null,
             @Part("disable_notification") disableNotification: Boolean? = null,
             @Part("reply_to_message_id") replyToMessageId: Int? = null,
-            @Part("reply_markup") replyMarkup: Reply? = null
+            @Part("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendLocation") @FormUrlEncoded
@@ -326,7 +326,7 @@ interface TelegramBotService {
             @Field("longitude") longitude: Float,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendLocation") @FormUrlEncoded
@@ -336,7 +336,7 @@ interface TelegramBotService {
             @Field("longitude") longitude: Float,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendVenue") @FormUrlEncoded
@@ -349,7 +349,7 @@ interface TelegramBotService {
             @Field("foursquare_id") foursquareId: String?,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendVenue") @FormUrlEncoded
@@ -362,7 +362,7 @@ interface TelegramBotService {
             @Field("foursquare_id") foursquareId: String?,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendContact") @FormUrlEncoded
@@ -373,7 +373,7 @@ interface TelegramBotService {
             @Field("last_name") lastName: String?,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendContact") @FormUrlEncoded
@@ -384,7 +384,7 @@ interface TelegramBotService {
             @Field("last_name") lastName: String?,
             @Field("disable_notification") disableNotification: Boolean? = null,
             @Field("reply_to_message_id") replyToMessageId: Int? = null,
-            @Field("reply_markup") replyMarkup: Reply? = null
+            @Field("reply_markup") replyMarkup: ReplyMarkup? = null
     ): Response<Message>
 
     @POST("/sendChatAction") @FormUrlEncoded

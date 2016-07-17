@@ -7,5 +7,5 @@ import com.google.gson.annotations.SerializedName as Name
  *
  * @property inlineKeyboard List of button rows, each represented by an List of InlineKeyboardButton objects.
  */
-data class InlineKeyboardMarkup(
-        @Name("inline_keyboard") val inlineKeyboard: List<List<InlineKeyboardButton>>) : Reply
+data class InlineKeyboardReplyMarkup(
+        @Name("inline_keyboard") val inlineKeyboard: List<List<InlineKeyboardButton>>) : ReplyMarkup

@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName as Name
  *           1) users that are @mentioned in the text of the Message object;
  *           2) if the bot's message is a reply (has reply_to_message_id), sender of the original message.
  */
-data class ForceReply(
+data class ForceReplyMarkup(
         @Name("force_reply") val forceReply: Boolean,
         val selective: Boolean
-) : Reply
+) : ReplyMarkup
