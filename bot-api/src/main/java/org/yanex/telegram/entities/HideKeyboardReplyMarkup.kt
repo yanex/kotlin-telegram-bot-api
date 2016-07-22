@@ -1,5 +1,6 @@
 package org.yanex.telegram.entities
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -18,4 +19,9 @@ import com.google.gson.annotations.SerializedName
 data class HideKeyboardReplyMarkup(
         @SerializedName("hide_keyboard") val hideKeyboard: Boolean = true,
         val selective: Boolean? = null
-) : ReplyMarkup
+) : ReplyMarkup {
+    private companion object {
+        val GSON = Gson()
+    }
+    override fun toString(): String = GSON.toJson(this)
+}

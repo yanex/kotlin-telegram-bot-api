@@ -1,5 +1,6 @@
 package org.yanex.telegram.entities
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -32,4 +33,10 @@ data class KeyboardReplyMarkup(
             oneTimeKeyboard: Boolean = false,
             selective: Boolean? = null
     ) : this(listOf(keyboard.toList()), resizeKeyboard, oneTimeKeyboard, selective)
+
+    private companion object {
+        val GSON = Gson()
+    }
+    
+    override fun toString(): String = GSON.toJson(this)
 }
