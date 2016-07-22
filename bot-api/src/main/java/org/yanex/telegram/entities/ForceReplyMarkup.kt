@@ -13,6 +13,6 @@ import com.google.gson.annotations.SerializedName as Name
  *           2) if the bot's message is a reply (has reply_to_message_id), sender of the original message.
  */
 data class ForceReplyMarkup(
-        @Name("force_reply") val forceReply: Boolean,
-        val selective: Boolean
+        @Name("force_reply") val forceReply: Boolean = true,
+        val selective: Boolean? = null
 ) : ReplyMarkup
