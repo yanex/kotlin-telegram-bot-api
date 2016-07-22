@@ -22,7 +22,7 @@ import com.google.gson.annotations.SerializedName
  */
 data class KeyboardReplyMarkup(
         val keyboard: List<List<String>>,
-        @SerializedName("resize_keyboard") val resizeKeyboard: Boolean,
-        @SerializedName("one_time_keyboard") val oneTimeKeyboard: Boolean,
-        val selective: Boolean
+        @SerializedName("resize_keyboard") val resizeKeyboard: Boolean? = null,
+        @SerializedName("one_time_keyboard") val oneTimeKeyboard: Boolean? = null,
+        val selective: Boolean? = null
 ) : ReplyMarkup

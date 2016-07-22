@@ -16,6 +16,6 @@ import com.google.gson.annotations.SerializedName
  *           2) if the bot's message is a reply (has reply_to_message_id), sender of the original message.
  */
 data class HideKeyboardReplyMarkup(
-        @SerializedName("hide_keyboard") val hideKeyboard: Boolean,
-        val selective: Boolean
+        @SerializedName("hide_keyboard") val hideKeyboard: Boolean = true,
+        val selective: Boolean? = null
 ) : ReplyMarkup
