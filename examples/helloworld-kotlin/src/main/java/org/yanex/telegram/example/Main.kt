@@ -1,14 +1,14 @@
 package org.yanex.telegram.example
 
+import okhttp3.logging.HttpLoggingInterceptor
 import org.yanex.telegram.TelegramBot
 import org.yanex.telegram.entities.*
 import org.yanex.telegram.handler.*
-import retrofit.RestAdapter
 
 fun main(args: Array<String>) {
     val properties = TelegramProperties()
-    val bot = TelegramBot.create(properties.token, RestAdapter.LogLevel.FULL)
-    
+    val bot = TelegramBot.create(properties.token, logLevel = HttpLoggingInterceptor.Level.HEADERS)
+
     val lastId = bot.listen(properties.lastId, VisitorUpdateHandler(object : AbstractUpdateVisitor() {
         override fun visitText(update: Update, message: Message, text: String) = when (text) {
             "ping" -> { sendText(update, "pong"); true }
