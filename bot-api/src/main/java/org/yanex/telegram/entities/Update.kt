@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName as Name
 /**
  * This object represents an incoming update.
  * Only *one* of the optional parameters can be present in any given update.
- * 
+ *
  * @property updateId The update‘s unique identifier.
  *        Update identifiers start from a certain positive number and increase sequentially.
  * @property message New incoming message of any kind — text, photo, sticker, etc.
@@ -22,18 +22,12 @@ data class Update(
         @Name("chosen_inline_result") val chosenInlineResult: ChosenInlineResult?,
         @Name("callback_query") val callbackQuery: CallbackQuery?) {
     val senderId: Long
-        get() {
-            return if (message != null) 
-                message.chat.id
-            else if (editedMessage != null)
-                editedMessage.chat.id
-            else if (inlineQuery != null)
-                inlineQuery.from.id
-            else if (chosenInlineResult != null)
-                chosenInlineResult.from.id
-            else if (callbackQuery != null)
-                callbackQuery.from.id
-            else
-                throw IllegalStateException("Everything is null.")
+        get() = when {
+            message != null -> message.chat.id
+            editedMessage != null -> editedMessage.chat.id
+            inlineQuery != null -> inlineQuery.from.id
+            chosenInlineResult != null -> chosenInlineResult.from.id
+            callbackQuery != null -> callbackQuery.from.id
+            else -> throw IllegalStateException("Everything is null.")
         }
 }
